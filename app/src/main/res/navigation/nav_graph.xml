@@ -10,4 +10,5 @@
         android:name="com.example.android4lesson5dz.ui.fragments.RickAndMortyFragment"
         android:label="fragment_rick_and_morty"
         tools:layout="@layout/fragment_rick_and_morty" />
+
 </navigation>

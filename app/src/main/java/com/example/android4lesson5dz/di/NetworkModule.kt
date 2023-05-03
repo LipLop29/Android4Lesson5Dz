@@ -24,7 +24,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providerLocation(): LocationApiService{
+    fun providerLocation(): LocationApiService {
         return retrofitClient.provideLocationApiService()
     }
 }

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Android4Lesson5Dz</string>
+    <string name="name">Name</string>
+    <string name="dimension">Dimension</string>
+    <string name="type">Type</string>
 </resources>

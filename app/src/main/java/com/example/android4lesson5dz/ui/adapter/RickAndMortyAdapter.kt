@@ -5,17 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android3lesson7dz.extention.setImage
 import com.example.android4lesson5dz.databinding.ItemRickAndMortyBinding
-import com.example.android4lesson5dz.models.ResultsItem
+import com.example.android4lesson5dz.extention.setImage
+import com.example.android4lesson5dz.models.CharacterAndLocationModel
 
 class RickAndMortyAdapter :
-    ListAdapter<ResultsItem, RickAndMortyAdapter.ViewHolder>(diffUtil) {
+    ListAdapter<CharacterAndLocationModel, RickAndMortyAdapter.ViewHolder>(diffUtil) {
 
     class ViewHolder(private val binding: ItemRickAndMortyBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResultsItem?) {
-            binding.itemImgPerson.setImage(item!!.image)
+        fun onBind(item: CharacterAndLocationModel?) {
+            binding.itemPersonImg.setImage(item!!.character.image)
+            binding.itemNameTv.text = item.character.name
+            binding.itemDimensionTv.text = item.location.dimension
+            binding.itemTypeTv.text = item.location.type
         }
     }
 
@@ -34,17 +37,17 @@ class RickAndMortyAdapter :
     }
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<ResultsItem>() {
+        private val diffUtil = object : DiffUtil.ItemCallback<CharacterAndLocationModel>() {
             override fun areItemsTheSame(
-                oldItem: ResultsItem,
-                newItem: ResultsItem
+                oldItem: CharacterAndLocationModel,
+                newItem: CharacterAndLocationModel
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: ResultsItem,
-                newItem: ResultsItem
+                oldItem: CharacterAndLocationModel,
+                newItem: CharacterAndLocationModel
             ): Boolean {
                 return oldItem.id == newItem.id
             }

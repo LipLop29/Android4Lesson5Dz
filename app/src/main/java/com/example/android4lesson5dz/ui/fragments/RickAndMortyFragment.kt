@@ -7,6 +7,7 @@ import com.example.android4lesson5dz.R
 import com.example.android4lesson5dz.base.BaseFragment
 import com.example.android4lesson5dz.databinding.FragmentRickAndMortyBinding
 import com.example.android4lesson5dz.ui.adapter.RickAndMortyAdapter
+import com.example.android4lesson5dz.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,9 +23,21 @@ class RickAndMortyFragment :
             layoutManager = LinearLayoutManager(requireContext())
             adapter = rickAndMortyAdapter
         }
+
+        subscribeToGetData()
     }
 
-    override fun setupObserve() {
-        viewModel.fetchCharacter()
+    private fun subscribeToGetData() {
+        viewModel.noteLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {}
+                is Resource.Loading -> {
+
+                }
+                is Resource.Success -> {
+                    rickAndMortyAdapter.submitList(it.data)
+                }
+            }
+        }
     }
 }

@@ -8,9 +8,7 @@ class CharacterRepository @Inject constructor(
     private val characterApiService: CharacterApiService
 ) : BaseRepository() {
 
-    fun fetchCharacter() {
-        doRequest {
+    fun fetchCharacter() = doRequest {
             characterApiService.fetchCharacters()
         }
-    }
 }
